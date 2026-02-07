@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { nanoid } from "nanoid"
+import { clsx } from "clsx"
 
 export default function Questions(props) {
     if (!props){
@@ -35,24 +36,17 @@ export default function Questions(props) {
             <h1 className="question">{props.question}</h1>
             <ul>
                 {answers.map(ans => {
-                    let bColor = "white"
-                    
-                    if (props.checked) {
-                        if (ans.isSelected && !ans.isCorrect){
-                            bColor = "red"
-                        } else if (ans.isSelected && ans.isCorrect){
-                            bColor = "green"
-                        } else if (!ans.isSelected && ans.isCorrect){
-                            bColor = "green"
-                        } 
-                    } else if (ans.isSelected){
-                            bColor= "blue"
-                    }
-    
+                    const buttonClass = clsx("button", {
+                        "button-default": !ans.isSelected,
+                        "button-selected": ans.isSelected && !props.checked,
+                        "button-correct": props.checked && ans.isCorrect,
+                        "button-wrong": props.checked && ans.isSelected && !ans.isCorrect,
+                        "button-checked": props.checked && !ans.isCorrect
+                    })
 
                     return (
                         <li key={ans.id}>
-                            <button style={{backgroundColor: bColor}} onClick={() => selectAnswer(ans.id)}>
+                            <button className={buttonClass} onClick={() => selectAnswer(ans.id)} disabled={props.checked}>
                                 {ans.value}
                             </button>
                         </li>
@@ -62,3 +56,18 @@ export default function Questions(props) {
         </div>
     )
 } 
+
+//  {/* {answers.map(ans => {
+//                     let bColor = "white"
+                    
+//                     if (props.checked) {
+//                         if (ans.isSelected && !ans.isCorrect){
+//                             bColor = "red"
+//                         } else if (ans.isSelected && ans.isCorrect){
+//                             bColor = "green"
+//                         } else if (!ans.isSelected && ans.isCorrect){
+//                             bColor = "green"
+//                         } 
+//                     } else if (ans.isSelected){
+//                             bColor= "blue"
+//                     } */}
