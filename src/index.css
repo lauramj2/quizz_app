@@ -16,7 +16,6 @@ html, body, h1, p, ul, li {
     justify-content: center;
     gap: 12px;
     color: #293264;
-    margin-top: 15rem;
 }
 
 .titlePage > h1 {
@@ -85,7 +84,8 @@ main {
     overflow: hidden;
     width: 95%;
     max-width: 650px;
-    min-height: 800px;
+    /* min-height: 800px; */
+    height: auto;
 }
 
 .question {
@@ -115,7 +115,7 @@ button {
 }
 
 .button-default {
-    background-color: white;
+    background-color: #F5F7FB;
     border: solid 1.5px #4D5B9E;
 }
 
@@ -146,7 +146,7 @@ button {
     gap: 0.5rem;
     border-radius: 10px;
     line-height: 1.2;
-    padding: 0.5rem 1rem;;
+    padding: 0.25rem 1rem;;
     white-space: nowrap;
 }
 
