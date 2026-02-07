@@ -5,7 +5,38 @@
 html, body, h1, p, ul, li {
     margin: 0;
     padding: 0;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', 'Karla', sans-serif;
+}
+
+
+.titlePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #293264;
+    margin-top: 15rem;
+}
+
+.titlePage > h1 {
+    font-family: 'Karla';
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.titlePage > p {
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.startBtn {
+    color: #F5F7FB;
+    background-color: #4D5B9E;
+    margin-top: 10px;
+    padding: 15px 50px;
+    font-weight: 500;
+    font-size: 1rem;
 }
 
 main {
@@ -54,7 +85,7 @@ main {
     overflow: hidden;
     width: 95%;
     max-width: 650px;
-    min-height: 100%;
+    min-height: 800px;
 }
 
 .question {
@@ -86,13 +117,6 @@ button {
 .button-default {
     background-color: white;
     border: solid 1.5px #4D5B9E;
-    gap: 0.5rem;
-    border-radius: 10px;
-    line-height: 1.2;
-    padding: 0.5rem 1rem;;
-    white-space: nowrap;
-    max-width: 12rem;
-    min-width: 5rem;
 }
 
 .button-selected {
@@ -108,25 +132,22 @@ button {
 }
 
 .button-selected, .button-correct, .button-wrong {
-    border-radius: 10px;
-    border: none;
-    gap: 0.5rem;
-    line-height: 1.2;
-    padding: 0.5rem 1rem;;
-    white-space: nowrap;
-    max-width: 12rem;
-    min-width: 5rem;
+    border: 1.5px solid transparent;
 }
 
 .button-checked {
     opacity: 0.5;
+}
+
+.button-default, .button-selected, .button-correct, .button-wrong, .button-checked {
+    white-space: nowrap;
+    width: auto;
+    max-width: none;
     gap: 0.5rem;
     border-radius: 10px;
     line-height: 1.2;
     padding: 0.5rem 1rem;;
     white-space: nowrap;
-    max-width: 12rem;
-    min-width: 5rem;
 }
 
 .checkDiv, .newGameDiv {

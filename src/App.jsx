@@ -10,12 +10,17 @@ import Questions from "./Components/Questions.jsx"
 
 export default function App() {
 
+  const [started, setStarted] = useState(false)
   const [questions, setQuestions] = useState([])
   const [results, setResults] = useState({})
   const [checked, setChecked] = useState(false)
   const [scoreMsg, setScoreMsg] = useState("")
 
   const fetchedRef = useRef(false) // track if fetch already happened
+
+  function startQuiz() {
+    setStarted(true)
+  }
 
   async function getQuestions() {
     try {
@@ -110,26 +115,38 @@ export default function App() {
 
   return (
     <main>
-      <div class="card">
+      <div className="card">
         <img src={blobYellow} alt="blob" className="blob blobYellow" />
         <img src={blobPurple} alt="blob" className="blob blobPurple" />
 
-        {(!Array.isArray(questions) || questions.length === 0) ? 
-            (
-              <p>Loading Questions...</p>
-            ):
-            (
-              questionElements
-            )
-          }
-          {checked === false && <div className="checkDiv">
-            <button className="checkBtn" onClick={checkAnswers}>Check Answers</button>
-          </div>}
+        {started ? (
+            <>
+              {(!Array.isArray(questions) || questions.length === 0) ? (
+                <p>Loading Questions...</p>
+              ) : (
+                questionElements
+              )}
 
-          {checked === true && <div className="newGameDiv">
-            <p>{scoreMsg}</p>
-            <button className="newBtn" onClick={newGame}>Play Again</button>
-          </div>}
+              {!checked && (
+                <div className="checkDiv">
+                  <button className="checkBtn" onClick={checkAnswers}>Check Answers</button>
+                </div>
+              )}
+
+              {checked && (
+                <div className="newGameDiv">
+                  <p>{scoreMsg}</p>
+                  <button className="newBtn" onClick={newGame}>Play Again</button>
+                </div>
+              )}
+            </>
+          ) : (
+              <div className="titlePage">
+                <h1>Quizzical</h1>
+                <p>Test your knowledge!</p>
+                <button className="startBtn" onClick={startQuiz}>Start Quiz</button>
+              </div>
+          )}
       </div>
     </main>
   )
